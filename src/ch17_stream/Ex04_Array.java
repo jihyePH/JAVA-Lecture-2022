@@ -23,6 +23,7 @@ public class Ex04_Array {
 				 .peek(i -> System.out.println(i))
 				 .map(i -> i *i)
 				 .forEach(i-> System.out.println(i));
+				 
 		}
 	}
 
