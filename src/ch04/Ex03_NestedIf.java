@@ -1,0 +1,29 @@
+package ch04;
+
+/**
+ * 중첩 (NEsted) If
+ */
+public class Ex03_NestedIf {
+
+	public static void main(String[] args) {
+		int score = 92;
+		String grade;
+		if (score > 90) { 			//if문 안에 또if문 중첩됨
+			if (score >=97)
+				grade ="A+";
+			else if (score >= 94)
+				grade = "A0";
+			
+		}else if (score > 80) {
+			if (score >87)
+				grade = "B+";
+			else if (score >= 84) {
+				grade = "B-";
+			}
+		}else {
+			grade ="C";
+		}
+		System.out.println(score +"점은"+grade +"학점입니다.");
+	}
+	
+}
