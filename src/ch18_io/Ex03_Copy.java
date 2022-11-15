@@ -13,7 +13,7 @@ import java.io.OutputStream;
 public class Ex03_Copy {
 
 	public static void main(String[] args) throws IOException {
-		String srcFile = "C:\\Users\\ppjih\\OneDrive - 단국대학교\\그림";
+		String srcFile = "/Users/ppjih/OneDrive - 단국대학교/그림";
 		String dstFile = "/Temp/cat.jpg";
 		
 		InputStream is = new FileInputStream(srcFile);
