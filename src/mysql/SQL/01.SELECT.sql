@@ -21,7 +21,7 @@ SELECT * FROM city;  #city 테이블에 있는 내용을 전부 가져오기
 SELECT 'NAME', Population FROM city;
 SELECT NOW();
 
-/* 조회 조건 */
+/* 1.2 조회 조건 */
 SELECT * FROM city WHERE countrycode='KOR';  #한국의 도시 조회
 SELECT NAME, district, population FROM city WHERE countrycode='KOR';
 SELECT NAME, district, population FROM city 
@@ -55,7 +55,7 @@ SELECT * from city
   WHERE countrycode='KOR'
   AND district LIKE 'chungchong%';
 
-  /* 순서 */
+  /*1.3 순서 */
   #전세계 인구가 800만 이상인 도시를 내림차순으로 조회
 SELECT * from city
   WHERE population >= 8000000
@@ -71,7 +71,7 @@ SELECT * from city
   WHERE population >= 500000 AND countrycode='KOR'
   ORDER BY DISTRICT ASC, population DESC ; #ASC(ascending) 생략가능
 
-  /* 개수 */
+  /* 1.4 개수 */
   #전세계 인구 top10
 SELECT * from city
  ORDER BY population DESC  #ASC(ascending)
@@ -89,7 +89,7 @@ SELECT * from city
  ORDER BY population DESC  
  LIMIT 10 OFFSET 10;     // 앞10개 건너뛰고, 10개 선택
 
- /* 함수 */
+ /* 1.5 함수 */
 #국내  도시의 개수
 SELECT COUNT(*) FROM city
     WHERE countrycode='KOR';
@@ -108,7 +108,7 @@ SELECT ROUND(avg(population)) as avgPopulation FROM city
 SELECT MAX(population),MIN(population) FROM city
 	WHERE countrycode='KOR';  
 
-/* 그룹 */
+/* 1.6 그룹 */
 #국내 광역시도의 인구수 합계를 내림차순으로 정렬
 SELECT district, SUM(population) FROM city
 	WHERE countrycode='KOR'
@@ -129,7 +129,7 @@ SELECT Countrycode, COUNT(*) FROM city
 	ORDER BY COUNT(*) DESC 
 	LIMIT 10;
 
-/* 그룹의 조건*/
+/* 1.7 그룹의 조건*/
 #국내 도시의 개수가 5개 이상인 도의 인구수평균
 SELECT district, round(AVG(population)), COUNT(*) FROM city
 	WHERE countrycode = 'KOR'
@@ -155,3 +155,19 @@ SELECT CONTINENT, SUM(SURFACEAREA), ROUND(AVG(GNP)), COUNT(NAME)
 	GROUP BY CONTINENT
 	ORDER BY SUM(SURFACEAREA) DESC;
  
+#전세계에서 인구가 가장 많은 10개 도시(도시명, 인구수, 언어명)
+USE world;
+SELECT l.'name', l.population, r.'Language' FROM city AS l
+	JOIN countrylanguage AS r
+	ON l.CountryCode = r.CountryCode
+	WHERE r.isofficial = true
+	ORDER BY l.population desc
+	LIMIT 10;
+
+/*
+* 1.8 SUbQuery
+*/
+#서울보다 인구가 많은 도시
+SELECT* FROM city
+	WHERE Population > 
+	(SELECT Population FROM city WHERE 'NAME'='Seoul');
