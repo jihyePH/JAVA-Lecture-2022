@@ -13,11 +13,12 @@ public class Ex01_Select {
 		Statement stmt = null;
 		try {
 			conn = DriverManager.getConnection(
-			        "jdbc:mysql://localhost:3306/world?useSSL=false&allowPublicKeyRetrieval=true"
-			        , 
+			        "jdbc:mysql://localhost:3306/world?useSSL=false&allowPublicKeyRetrieval=true",
 			        "root", "paul1202!");
 			stmt = conn.createStatement();
 			String sql = "SELECT * FROM city WHERE countrycode='KOR' LIMIT 10;";
+			
+			// Select 실행
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				int id = rs.getInt(1);				// 첫번째 컬럼, 정수형 값
