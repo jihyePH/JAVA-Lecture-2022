@@ -3,7 +3,7 @@ package mysql.customer;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Main {
+public class Test {
 
 	public static void main(String[] args) {
 		DAO dao = new DAO();
@@ -15,14 +15,19 @@ public class Main {
 //	dao.insertCustomer(c2);
 		
 	
-	Customer c3 = dao.getCustomer("james");
-	System.out.println(c3);
-	System.out.println();
+//	Customer c3 = dao.getCustomer("james");
+//	System.out.println(c3);
+//	System.out.println();
 	
-	c3.setName("제임수");
-	c3.setRegDate(LocalDate.parse("2022-11-01"));
-	dao.updateCustomer(c3);
+//	c3.setName("제임수");
+//	c3.setRegDate(LocalDate.parse("2022-11-01"));
+//	dao.updateCustomer(c3);
 	
+//	dao.deleteCustomer("james");
+	
+		Customer c2 = new Customer("maria","마리아");
+		dao.insertCustomer(c2);
+		
 	List<Customer> list = dao.getCustomers();
 	for (Customer c:list)
 		System.out.println(c);
